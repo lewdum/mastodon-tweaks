@@ -2,22 +2,17 @@
   "manifest_version": 2,
   "name": "Mastodon Tweaks (tech.lgbt)",
   "description": "Accessibility tweaks and customization for Mastodon 4+.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "icons": {
     "64": "assets/logo-purple.svg"
   },
   "permissions": [
     "storage"
   ],
-  "background": {
-    "scripts": [
-      "dist/background.js"
-    ]
-  },
   "content_scripts": [
     {
       "matches": [
-        "*://tech.lgbt/settings/preferences/appearance"
+        "https://*/settings/preferences/appearance"
       ],
       "js": [
         "dist/settings.js"
@@ -26,7 +21,7 @@
     },
     {
       "matches": [
-        "*://tech.lgbt/*"
+        "<all_urls>"
       ],
       "js": [
         "dist/timeline.js"

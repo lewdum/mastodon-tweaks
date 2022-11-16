@@ -1,16 +1,17 @@
 {
   "name": "mastodon-tweaks",
-  "version": "0.2.0",
-  "description": "",
+  "version": "0.3.0",
+  "description": "Quick and dirty UI tweaks for Mastodon 4+.",
+  "repository": "https://github.com/lewdum/mastodon-tweaks",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
   },
   "keywords": [],
-  "author": "Lewdum [@lewdum@tech.lgbt]",
+  "author": "Lewdum",
   "license": "ISC",
   "devDependencies": {
     "@types/firefox-webext-browser": "^94.0.1",
-    "typescript": "^4.6.3"
+    "typescript": "^4.9.3"
   }
 }

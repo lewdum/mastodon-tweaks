@@ -5,9 +5,7 @@
 
 A Firefox extension for tweaking Mastodon's UI.
 
-Currently, only [@tech.lgbt] is supported (because I'm lazy), but this will be expanded soon.
-
-[@tech.lgbt]: https://tech.lgbt
+Now compatible with all Mastodon instances, at least in theory.
 
 
 ## Implemented tweaks

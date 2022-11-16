@@ -1,20 +1,27 @@
 "use strict";
-let customToot;
-const pageObserver = new MutationObserver(updateHooks);
-const tootObserver = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        updateToot(mutation.target);
+(() => {
+    let debug;
+    let customToot;
+    const pageObserver = new MutationObserver(updateHooks);
+    const tootObserver = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            updateToot(mutation.target);
+        });
     });
-});
-async function injectTimeline() {
-    console.log('Injecting Mastodon Tweaks...');
-    const settings = await browser.storage.local.get([
-        'sidebarLeft',
-        'customToot'
-    ]);
-    if (settings.sidebarLeft) {
-        const style = document.createElement('style');
-        style.textContent = `
+    async function inject() {
+        if (document.body.querySelector('#mastodon') === null) {
+            return;
+        }
+        const settings = await browser.storage.local.get([
+            'debug',
+            'sidebarLeft',
+            'customToot'
+        ]);
+        debug = settings.debug;
+        debugLog('Injecting Mastodon Tweaks...');
+        if (settings.sidebarLeft) {
+            const style = document.createElement('style');
+            style.textContent = `
       @media only screen and (max-width: 1174px) {
         .columns-area__panels__pane--navigational {
           order: -1;
@@ -25,42 +32,49 @@ async function injectTimeline() {
         }
       }
     `;
-        document.head.appendChild(style);
-    }
-    customToot = settings.customToot;
-    pageObserver.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-    console.log('Injected Mastodon Tweaks.');
-}
-function updateHooks() {
-    console.log('Updating Mastodon Tweaks hooks...');
-    tootObserver.disconnect();
-    const publishButtons = [
-        document.body.querySelector('.compose-form__publish-button-wrapper > button'),
-        document.body.querySelector('.ui__header__links a[href="/publish"] span')
-    ];
-    publishButtons.forEach(btn => {
-        if (btn === null) {
-            return;
+            document.head.appendChild(style);
         }
-        updateToot(btn);
-        tootObserver.observe(btn, {
-            characterData: true,
+        customToot = settings.customToot;
+        pageObserver.observe(document.body, {
+            childList: true,
             subtree: true
         });
-    });
-}
-function updateToot(btn) {
-    if (customToot === undefined || customToot === '') {
-        return;
+        debugLog('Injected Mastodon Tweaks.');
     }
-    if (btn.textContent === 'Publish') {
-        btn.textContent = customToot;
+    function updateHooks() {
+        debugLog('Updating Mastodon Tweaks hooks...');
+        tootObserver.disconnect();
+        const publishButtons = [
+            document.body.querySelector('.compose-form__publish-button-wrapper > button'),
+            document.body.querySelector('.ui__header__links a[href="/publish"] span')
+        ];
+        publishButtons.forEach(btn => {
+            if (btn === null) {
+                return;
+            }
+            updateToot(btn);
+            tootObserver.observe(btn, {
+                characterData: true,
+                subtree: true
+            });
+        });
     }
-    else if (btn.textContent === 'Publish!') {
-        btn.textContent = `${customToot}!`;
+    function updateToot(btn) {
+        if (customToot === undefined || customToot === '') {
+            return;
+        }
+        if (btn.textContent === 'Publish') {
+            btn.textContent = customToot;
+        }
+        else if (btn.textContent === 'Publish!') {
+            btn.textContent = `${customToot}!`;
+        }
     }
-}
-injectTimeline();
+    function debugLog(...args) {
+        if (debug === false) {
+            return;
+        }
+        console.log(...args);
+    }
+    inject();
+})();
