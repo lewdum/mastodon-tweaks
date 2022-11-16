@@ -1,12 +1,16 @@
 <img
     src="https://i0.wp.com/thewomxnproject.org/wp-content/uploads/2018/10/transrights.png?ssl=1"
-    alt="Transgender flag overlayed with the text '#TransRightsAreHumanRights'"
+    alt="Transgender flag with the text '#TransRightsAreHumanRights'"
     height="120">
 
 A Firefox extension for tweaking Mastodon's UI.
 
+Currently, only [@tech.lgbt] is supported (because I'm lazy), but this will be expanded soon.
 
-## Current tweaks
+[@tech.lgbt]: https://tech.lgbt
+
+
+## Implemented tweaks
 
 - **Custom "Publish" label**: Finally, you can get back your beloved "Toots"!
 
@@ -54,7 +58,7 @@ TODO
 
 - **Purple logo** by [Mastodon]
 
-- **Edited trans flag** by [The Womxn Project]
+- **Trans flag** by [The Womxn Project]
 
 [Mastodon]: https://joinmastodon.org
 [The Womxn Project]: https://thewomxnproject.org/trans-rights-are-human-rights/
