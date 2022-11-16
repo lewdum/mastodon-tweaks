@@ -1,6 +1,13 @@
 A Firefox extension for tweaking Mastodon's UI.
 
 
+## Current tweaks
+
+- **Custom "Publish" label**: Finally, you can get back your beloved "Toots"!
+
+- **Move sidebar to the left**: Places the timeline sidebar on the left in smaller devices.
+
+
 ## How to install
 
 Currently, this extension is not on the official Firefox Addons (AMO) repository.
