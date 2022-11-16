@@ -10,17 +10,17 @@
         debugLog('Injecting Mastodon Tweaks...');
         const form = document.body.querySelector('#edit_user');
         if (form === null) {
-            debugLog('Form not found.');
+            debugLog('Bailing, form not found.');
             return;
         }
         const save = form.querySelector('.actions');
         if (save === null) {
-            debugLog('Save button not found.');
+            debugLog('Bailing, save button not found.');
             return;
         }
         const header = document.createElement('h4');
         header.textContent = 'Mastodon Tweaks';
-        const optionSidebarLeft = await createBoolOption('sidebarLeft', 'Move timeline sidebar to the left in small devices', false);
+        const optionSidebarLeft = await createBoolOption('sidebarLeft', 'Move timeline sidebar to the left on smaller devices', false);
         const optionCustomToot = await createStringOption('customToot', 'Change the "Publish" label to a custom string, such as "Toot"', '');
         const optionDebug = await createBoolOption('debug', 'Print debug messages to the browser console', true);
         const hint = document.createElement('span');
@@ -73,7 +73,7 @@
         mess.className = 'input with_label string optional';
         mess.innerHTML = `
     <div class="label_input">
-      <label class="string required" for="tweaks-${id}">
+      <label class="string optional" for="tweaks-${id}">
         ${description}
       </label>
       <div class="label_input__wrapper">
