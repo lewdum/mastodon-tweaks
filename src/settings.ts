@@ -23,7 +23,10 @@ async function injectSettings() {
 
   const hint = document.createElement('span')
   hint.className = 'hint'
-  hint.textContent = 'Options in this section are automatically saved when modified.'
+  hint.textContent = (
+    'Options in this section are automatically saved when modified. ' +
+    'If nothing seems to be changing, you may need to do a hard refresh.'
+  )
 
   form.insertBefore(header, save)
   form.insertBefore(hint, save)
