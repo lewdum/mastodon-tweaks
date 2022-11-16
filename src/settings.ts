@@ -16,10 +16,15 @@ async function injectSettings() {
   const header = document.createElement('h4')
   header.textContent = 'Mastodon Tweaks'
 
-  const option1 = await createOption(
+  const optionSidebarLeft = await createBoolOption(
     'sidebarLeft',
-    'Move timeline sidebar to the left in small devices.',
+    'Move timeline sidebar to the left in small devices',
     false)
+
+  const optionCustomToot = await createStringOption(
+    'customToot',
+    'Change the "Publish" label to a custom string, such as "Toot"',
+    '')
 
   const hint = document.createElement('span')
   hint.className = 'hint'
@@ -28,39 +33,41 @@ async function injectSettings() {
     'If nothing seems to be changing, you may need to do a hard refresh.'
   )
 
+  const group = document.createElement('div')
+  group.className = 'fields-group'
+  group.appendChild(optionCustomToot)
+  group.appendChild(optionSidebarLeft)
+  group.appendChild(hint)
+
   form.insertBefore(header, save)
-  form.insertBefore(hint, save)
-  form.insertBefore(option1, save)
+  form.insertBefore(group, save)
 
   console.log('Injected Mastodon Tweaks.')
 }
 
-async function createOption(
+async function createBoolOption(
   id: string,
   description: string,
   defaultValue: boolean
 ): Promise<HTMLDivElement> {
   const data = await browser.storage.local.get(id)
-  console.dir(data)
   const value = data[id] ?? defaultValue
 
   const mess = document.createElement('div')
-  mess.className = 'fields-group'
+  mess.className = 'input with_label boolean optional'
   mess.innerHTML = `
-    <div class="input with_label boolean optional">
-      <div class="label_input">
-        <label class="boolean optional" for="tweaks-${id}">
-          ${description}
+    <div class="label_input">
+      <label class="boolean optional" for="tweaks-${id}">
+        ${description}
+      </label>
+      <div class="label_input__wrapper">
+        <label class="checkbox">
+          <input
+            id="tweaks-${id}"
+            class="boolean optional"
+            type="checkbox"
+            ${value ? "checked" : ""}>
         </label>
-        <div class="label_input__wrapper">
-          <label class="checkbox">
-            <input
-              id="tweaks-${id}"
-              class="boolean optional"
-              type="checkbox"
-              ${value ? "checked" : ""}>
-          </label>
-        </div>
       </div>
     </div>
   `
@@ -69,6 +76,41 @@ async function createOption(
   input.addEventListener('change', async () => {
     await browser.storage.local.set({
       [id]: input.checked
+    })
+  })
+
+  return mess
+}
+
+async function createStringOption(
+  id: string,
+  description: string,
+  defaultValue: string
+): Promise<HTMLDivElement> {
+  const data = await browser.storage.local.get(id)
+  const value = data[id] ?? defaultValue
+
+  const mess = document.createElement('div')
+  mess.className = 'input with_label string optional'
+  mess.innerHTML = `
+    <div class="label_input">
+      <label class="string required" for="tweaks-${id}">
+        ${description}
+      </label>
+      <div class="label_input__wrapper">
+        <input
+          id="tweaks-${id}"
+          class="string optional"
+          type="text"
+          value="${value}">
+      </div>
+    </div>
+  `
+
+  const input = mess.querySelector('input') as HTMLInputElement
+  input.addEventListener('change', async () => {
+    await browser.storage.local.set({
+      [id]: input.value.trim()
     })
   })
 
