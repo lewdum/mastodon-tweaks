@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Mastodon Tweaks",
+  "description": "Accessibility tweaks for Mastodon 4.0.",
+  "version": "0.1.0",
+  "icons": {
+    "64": "assets/logo-purple.svg"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": [
+      "dist/background.js"
+    ]
+  }
+}
