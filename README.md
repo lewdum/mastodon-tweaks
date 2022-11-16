@@ -1,3 +1,8 @@
+<img
+    src="https://i0.wp.com/thewomxnproject.org/wp-content/uploads/2018/10/transrights.png?ssl=1"
+    alt="Transgender flag overlayed with the text '#TransRightsAreHumanRights'"
+    height="120">
+
 A Firefox extension for tweaking Mastodon's UI.
 
 
@@ -22,11 +27,11 @@ As such, the easiest way to install it is to download a built/signed artifact ma
 
     ![screenshot of the hamburguer menu](/readme/how-to-install-2.png)
 
-[latest release]: https://github.com/lewdum/mastodon-tweaks/releases/latest
-
 1. Click the "gear" menu on the right and select "Install Add-on From File...". From there, just pick the .xpi file you download in step 1 and confirm installation.
 
     ![screenshot of the gear menu](/readme/how-to-install-3.png)
+
+[latest release]: https://github.com/lewdum/mastodon-tweaks/releases/latest
 
 
 ### Mobile
@@ -47,6 +52,9 @@ TODO
 
 ## Credits
 
-- **logo-purple** by [Mastodon]
+- **Purple logo** by [Mastodon]
+
+- **Edited trans flag** by [The Womxn Project]
 
 [Mastodon]: https://joinmastodon.org
+[The Womxn Project]: https://thewomxnproject.org/trans-rights-are-human-rights/
