@@ -3,7 +3,7 @@
     alt="Transgender flag with the text '#TransRightsAreHumanRights'"
     height="120">
 
-A Firefox extension for tweaking Mastodon's UI.
+A Firefox extension for tweaking Mastodon's web client UI.
 
 Now compatible with all Mastodon instances, at least in theory.
 
@@ -12,7 +12,12 @@ Now compatible with all Mastodon instances, at least in theory.
 
 - **Custom "Publish" label**: Finally, you can get back your beloved "Toots"!
 
-- **Move sidebar to the left**: Places the timeline sidebar on the left in smaller devices.
+- **Move sidebar to the left**: Places the timeline sidebar on the left on smaller devices.
+
+
+## Policies
+
+No telemetry, no ads, no bullshit.
 
 
 ## How to install
